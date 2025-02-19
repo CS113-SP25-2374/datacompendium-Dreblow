@@ -17,40 +17,38 @@ public class ArrayListDAD<E> implements ListInterface<E> {
             resize();
             array[length] = element;
         }
-        for (int i = 0; i < array.length; i++){
-            if(array[i] == null){
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == null) {
                 array[i] = element;
                 return true;
             }
         }
-        
         return true;
     }
 
     @Override
     public void add(int index, E element) {
-        if(index < 0 || index > array.length) {
+        if (index < 0 || index >= array.length) {
             throw new IndexOutOfBoundsException();
         }
 
-        if(array[array.length - 1] != null){
+        if (array[array.length - 1] != null) {
             resize();
         } else if (index == array.length - 1) {
             array[array.length - 1] = element;
         }
 
-        for(int i = index; i < array.length - 1; i++){
-            E temp = array[i + 1];
-            array[i + 1] = array[i];
-            array[i] = element;
-            element = temp;
+        for (int i = size(); i >= index; i--) {
+            array[i] = array[i - 1];
         }
+        array[index] = element;
     }
 
     @Override
     public void clear() {
-        for (E element : array) {
-            element = null;
+        for (int i = 0; i < array.length; i++) {
+            array[i] = null;
         }
     }
 
@@ -89,15 +87,14 @@ public class ArrayListDAD<E> implements ListInterface<E> {
 
     @Override
     public boolean remove(int index) {
-        for (int i = 0; i < array.length; i++) {
+        if (index < 0 || index >= array.length) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        for (int i = index; i < array.length - 1; i++) {
             array[i] = array[i + 1];
         }
-
         array[array.length - 1] = null;
-
-        if (index == array.length - 1) {
-
-        }
         return true;
     }
 
@@ -132,11 +129,14 @@ public class ArrayListDAD<E> implements ListInterface<E> {
 
         stringBuilder.append("[");
 
-        for(int i = 0; i < array.length; i++){
-            stringBuilder.append(array[i].toString());
+        int size = size();
+        for (int i = 0; i < size; i++) {
+            stringBuilder.append(array[i]);
+            if (i < size - 1) stringBuilder.append(", ");
         }
 
-        return "";
+        stringBuilder.append("]");
+        return stringBuilder.toString();
     }
 
     private void resize() {
