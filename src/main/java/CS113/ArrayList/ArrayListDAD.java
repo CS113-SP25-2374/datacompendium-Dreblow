@@ -8,6 +8,7 @@ public class ArrayListDAD<E> implements ListInterface<E> {
 
     final static int DEFAULT_SIZE = 10;
 
+    @SuppressWarnings("unchecked")
     public ArrayListDAD() {
         array = (E[]) new Object[DEFAULT_SIZE];
     }
@@ -142,10 +143,9 @@ public class ArrayListDAD<E> implements ListInterface<E> {
     }
 
     private void resize() {
+        @SuppressWarnings("unchecked")
         E[] resizeArray = (E[]) new Object[array.length + (array.length / 2)];
-        for (int i = 0; i < array.length; i++) {
-            resizeArray[i] = array[i];
-        }
+        System.arraycopy(array, 0, resizeArray, 0, array.length);
         array = resizeArray;
     }
     

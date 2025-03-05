@@ -6,6 +6,7 @@ import CS113.ListInterface;
 
 public class LinkedListDAD<E> implements ListInterface<E>, IteratorInterface<E>, IterableInterface<E>  {
 
+    @SuppressWarnings("hiding")
     private class Node<E> {
         E element;
         Node<E> prev;
