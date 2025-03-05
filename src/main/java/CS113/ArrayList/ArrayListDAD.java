@@ -1,4 +1,6 @@
-package CS113;
+package CS113.ArrayList;
+
+import CS113.ListInterface;
 
 public class ArrayListDAD<E> implements ListInterface<E> {
 

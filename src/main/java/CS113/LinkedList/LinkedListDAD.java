@@ -1,4 +1,8 @@
-package CS113;
+package CS113.LinkedList;
+
+import CS113.IterableInterface;
+import CS113.IteratorInterface;
+import CS113.ListInterface;
 
 public class LinkedListDAD<E> implements ListInterface<E>, IteratorInterface<E>, IterableInterface<E>  {
 
