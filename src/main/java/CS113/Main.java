@@ -3,6 +3,7 @@ package CS113;
 import java.util.LinkedList;
 
 import CS113.LinkedList.LinkedListDAD;
+import CS113.SearchTrees.BinarySearchTreeDAD;
 import CS113.StackQueue.ArrayDequeDAD;
 import CS113.StackQueue.ArrayQueueDAD;
 import CS113.StackQueue.ArrayStackDAD;
@@ -16,6 +17,7 @@ public class Main {
         ArrayDequeDAD<Integer> testDeque = new ArrayDequeDAD<>();
         ArrayQueueDAD<Integer> testQueue = new ArrayQueueDAD<>();
         ArrayStackDAD<Integer> testStack = new ArrayStackDAD<>();
+        BinarySearchTreeDAD<Integer> testBST = new BinarySearchTreeDAD<>();
 
 
         for (int i = 0; i < 10; i++) {
@@ -106,6 +108,48 @@ public class Main {
         testStack.pop();                                                    // Removes 7
         System.out.println(testStack);
         System.out.println("Stack is empty after all pops? " + testStack.empty()); // Expected: true
+
+
+        // ===========================
+        // Testing BinarySearchTreeDAD
+        // ===========================
+        System.out.println("");
+        System.out.println("Testing BinarySearchTreeDAD");
+
+        // Inserting elements
+        testBST.insert(10);
+        testBST.insert(5);
+        testBST.insert(15);
+        testBST.insert(3);
+        testBST.insert(7);
+        testBST.insert(12);
+        testBST.insert(18);
+
+
+        System.out.println("Is the BST empty after insertions? " + testBST.isEmpty());      // Expected: false
+        System.out.println("Height of BST: " + testBST.height());                           // Expected: 3
+
+        // Finding minimum and maximum
+        System.out.println("Minimum value: " + testBST.findMin());                          // Expected: 3
+        System.out.println("Maximum value: " + testBST.findMax());                          // Expected: 18
+
+        // Contains method
+        System.out.println("Does BST contain 7? " + testBST.contains(7));              // Expected: true
+        System.out.println("Does BST contain 20? " + testBST.contains(20));            // Expected: false
+
+        // Deleting elements
+        System.out.println("Deleting 7: " + testBST.delete(7));                        // Expected: true
+        System.out.println("Does BST contain 7 after deletion? " + testBST.contains(7)); // Expected: false
+
+        // Deleting non-existing element
+        System.out.println("Deleting 20: " + testBST.delete(20));                      // Expected: false
+
+        // Height after deletion
+        System.out.println("Height of BST after deletion: " + testBST.height());            // Should adjust accordingly
+
+        // Clearing the BST
+        testBST.clear();
+        System.out.println("Is the BST empty after clear()? " + testBST.isEmpty());         // Expected: true
 
     }
 }
