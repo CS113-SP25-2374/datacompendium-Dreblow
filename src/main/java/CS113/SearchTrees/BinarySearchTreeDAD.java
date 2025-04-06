@@ -2,8 +2,8 @@ package CS113.SearchTrees;
 
 public class BinarySearchTreeDAD<E extends Comparable<E>> implements BinarySearchTree<E> {
 
-    @SuppressWarnings("hiding")
-    private class Node<E> {
+    @SuppressWarnings("hiding") 
+    protected class Node<E> {
         E data;
         Node<E> left;
         Node<E> right;
@@ -13,7 +13,7 @@ public class BinarySearchTreeDAD<E extends Comparable<E>> implements BinarySearc
         }
     }
 
-    private Node<E> root;
+    protected Node<E> root;
 
     // Recursively added generic data to binary tree
     @Override
@@ -21,7 +21,7 @@ public class BinarySearchTreeDAD<E extends Comparable<E>> implements BinarySearc
         root = insertRecursive(root, data);
     }
     
-    private Node<E> insertRecursive(Node<E> node, E data) {
+    protected  Node<E> insertRecursive(Node<E> node, E data) {
         if (node == null) {
             return new Node<>(data);
         }
@@ -115,7 +115,7 @@ public class BinarySearchTreeDAD<E extends Comparable<E>> implements BinarySearc
         return heightRecursive(root);
     }
 
-    private int heightRecursive(Node<E> node) {
+    protected int heightRecursive(Node<E> node) {
         if (node == null) return 0;
 
         return 1 + Integer.max(heightRecursive(node.left), heightRecursive(node.right));
@@ -163,6 +163,14 @@ public class BinarySearchTreeDAD<E extends Comparable<E>> implements BinarySearc
         String left = toStringRecursive(node.left);
         String current = node.data.toString() + " ";
         String right = toStringRecursive(node.right);
+
+        if (!"".equals(left)) {
+            left += ", ";
+        }
+        if (!"".equals(right)) {
+            current += ", ";
+        }
+     
     
         return left + current + right;
     }

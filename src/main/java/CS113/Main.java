@@ -3,6 +3,7 @@ package CS113;
 import java.util.LinkedList;
 
 import CS113.LinkedList.LinkedListDAD;
+import CS113.SearchTrees.AVLTreeDAD;
 import CS113.SearchTrees.BinarySearchTreeDAD;
 import CS113.StackQueue.ArrayDequeDAD;
 import CS113.StackQueue.ArrayQueueDAD;
@@ -150,6 +151,35 @@ public class Main {
         // Clearing the BST
         testBST.clear();
         System.out.println("Is the BST empty after clear()? " + testBST.isEmpty());         // Expected: true
+
+
+        // ===========================
+        // Testing AVLTreeDAD
+        // ===========================
+        System.out.println("");
+        System.out.println("Testing AVLTreeDAD");
+
+        AVLTreeDAD<Integer> avlDAD = new AVLTreeDAD<>();
+
+        // Inserting in a way that will cause right-heavy imbalance
+        int[] values = {10, 20, 30, 40, 50}; 
+
+        System.out.println("Inserting values: ");
+        for (int val : values) {
+            avlDAD.insert(val);
+            System.out.print(val + " ");
+        }
+        System.out.println();
+        System.out.println("Height of AVL Tree: " + avlDAD.height());
+
+        System.out.println("\nIn-order traversal after balancing:");
+        System.out.println(avlDAD.toString());                                              // Should print 10 20 30 40 50 in order
+
+        System.out.println("Height of AVL Tree: " + avlDAD.height());
+
+        System.out.println();
+        System.out.println("Tree structure:");
+        avlDAD.printTree();
 
     }
 }
