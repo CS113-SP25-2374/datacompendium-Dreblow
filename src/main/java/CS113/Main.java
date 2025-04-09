@@ -3,6 +3,7 @@ package CS113;
 import java.util.LinkedList;
 
 import CS113.LinkedList.LinkedListDAD;
+import CS113.PriorityQueue.PriorityQueueDAD;
 import CS113.SearchTrees.AVLTreeDAD;
 import CS113.SearchTrees.BinarySearchTreeDAD;
 import CS113.StackQueue.ArrayDequeDAD;
@@ -181,5 +182,36 @@ public class Main {
         System.out.println("Tree structure:");
         avlDAD.printTree();
 
+
+        // ===========================
+        // Testing PriorityQueueDAD
+        // ===========================
+        System.out.println("");
+        System.out.println("Testing PriorityQueueDAD");
+
+        PriorityQueueDAD<Integer> pqDAD = new PriorityQueueDAD<>();
+
+        System.out.println("Inserting values: ");
+        for (int i = 10; i > 0; i--) {
+            pqDAD.add(i);
+            System.out.print(i + " ");
+        }
+        System.out.println("\n");
+
+        System.out.println("result:");
+        System.out.println(pqDAD.toString());
+        System.out.println("");
+
+        System.out.println("Poll:");
+        pqDAD.poll();
+        System.out.println(pqDAD.toString());
+        System.out.println("Poll again:");
+        pqDAD.poll();
+        System.out.println(pqDAD.toString());
+        System.out.println("");
+
+        System.out.println("Peek:");
+        System.out.println(pqDAD.peek().toString());
+        
     }
 }
