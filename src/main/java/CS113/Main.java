@@ -2,6 +2,7 @@ package CS113;
 
 import java.util.LinkedList;
 
+import CS113.HashMap.HashMapDAD;
 import CS113.LinkedList.LinkedListDAD;
 import CS113.PriorityQueue.PriorityQueueDAD;
 import CS113.SearchTrees.AVLTreeDAD;
@@ -112,6 +113,7 @@ public class Main {
         System.out.println("Stack is empty after all pops? " + testStack.empty()); // Expected: true
 
 
+
         // ===========================
         // Testing BinarySearchTreeDAD
         // ===========================
@@ -154,6 +156,7 @@ public class Main {
         System.out.println("Is the BST empty after clear()? " + testBST.isEmpty());         // Expected: true
 
 
+
         // ===========================
         // Testing AVLTreeDAD
         // ===========================
@@ -181,6 +184,7 @@ public class Main {
         System.out.println();
         System.out.println("Tree structure:");
         avlDAD.printTree();
+
 
 
         // ===========================
@@ -212,6 +216,56 @@ public class Main {
 
         System.out.println("Peek:");
         System.out.println(pqDAD.peek().toString());
-        
+
+
+
+        // ===========================
+        // Testing HashMapDAD
+        // ===========================
+        System.out.println("");
+        System.out.println("Testing HashMapDAD");
+
+        HashMapDAD<String, Integer> map = new HashMapDAD<>();
+        System.out.println("");
+
+        // Insert values
+        map.put("apple", 5);
+        map.put("banana", 10);
+        map.put("cherry", 15);
+        map.put("date", 20);
+        map.put("elderberry", 25);
+
+        // Test get()
+        System.out.println("Value for 'banana': " + map.get("banana")); // 10
+
+        // Test containsKey()
+        System.out.println("Contains 'cherry'? " + map.containsKey("cherry")); // true
+        System.out.println("Contains 'fig'? " + map.containsKey("fig")); // false
+
+        // Test containsValue()
+        System.out.println("Contains value 25? " + map.containsValue(25)); // true
+        System.out.println("Contains value 99? " + map.containsValue(99)); // false
+
+        // Test keySet()
+        System.out.println("All keys: " + map.keySet());
+
+        // Test values()
+        System.out.println("All values: " + map.values());
+
+        // Trigger rehash
+        map.put("fig", 30);
+        map.put("grape", 35);
+        map.put("honeydew", 40);
+        map.put("kiwi", 45);
+        map.put("lemon", 50); // Should force a resize and rehash
+
+        System.out.println("Keys after rehash: " + map.keySet());
+        System.out.println("Values after rehash: " + map.values());
+        System.out.println("Size: " + map.size());
+
+        // Clear test
+        map.clear();
+        System.out.println("Size after clear: " + map.size());
+        System.out.println("Is empty? " + map.isEmpty());
     }
 }
