@@ -1,12 +1,15 @@
 package CS113;
 
 import java.util.LinkedList;
+import java.util.Random;
 
+import CS113.ArrayList.ArrayListDAD;
 import CS113.HashMap.HashMapDAD;
 import CS113.LinkedList.LinkedListDAD;
 import CS113.PriorityQueue.PriorityQueueDAD;
 import CS113.SearchTrees.AVLTreeDAD;
 import CS113.SearchTrees.BinarySearchTreeDAD;
+import CS113.Sorting.SortingDAD;
 import CS113.StackQueue.ArrayDequeDAD;
 import CS113.StackQueue.ArrayQueueDAD;
 import CS113.StackQueue.ArrayStackDAD;
@@ -20,7 +23,7 @@ public class Main {
         ArrayDequeDAD<Integer> testDeque = new ArrayDequeDAD<>();
         ArrayQueueDAD<Integer> testQueue = new ArrayQueueDAD<>();
         ArrayStackDAD<Integer> testStack = new ArrayStackDAD<>();
-        BinarySearchTreeDAD<Integer> testBST = new BinarySearchTreeDAD<>();
+        // changed initialization closer to tests for easier tracking
 
 
         for (int i = 0; i < 10; i++) {
@@ -119,6 +122,8 @@ public class Main {
         // ===========================
         System.out.println("");
         System.out.println("Testing BinarySearchTreeDAD");
+
+        BinarySearchTreeDAD<Integer> testBST = new BinarySearchTreeDAD<>();
 
         // Inserting elements
         testBST.insert(10);
@@ -267,5 +272,88 @@ public class Main {
         map.clear();
         System.out.println("Size after clear: " + map.size());
         System.out.println("Is empty? " + map.isEmpty());
+
+
+
+        // ===========================
+        // Testing SortingDAD
+        // ===========================
+        SortingDAD<Integer> sortDAD = new SortingDAD<>();
+        ArrayListDAD<Integer> sortTestArray = new ArrayListDAD<>();
+
+        System.out.println("");
+        System.out.println("Testing SortingDAD: bubbly sort");
+
+        int sortDADTests = 10;
+        Random rand = new Random();
+
+        for (int i = 0; i < sortDADTests; i++) {
+            sortTestArray.add(i + rand.nextInt(100));
+        }
+
+        // Bubble sort test
+        System.out.println("Current array: " + sortTestArray.toString());
+        sortDAD.bubbleSort(sortTestArray);
+        System.out.println("After bubble sort: " + sortTestArray.toString());
+
+        // resetting test
+        sortTestArray.clear();
+        for (int i = 0; i < sortDADTests; i++) {
+            sortTestArray.add(i + rand.nextInt(100));
+        }
+
+
+        // Insertion sort test
+        System.out.println("\nNew Test");
+        System.out.println("Testing SortingDAD: insertion sort");
+
+        System.out.println("Current array: " + sortTestArray.toString());
+        sortDAD.insertionSort(sortTestArray);
+        System.out.println("After insertion sort: " + sortTestArray.toString());
+
+        // resetting test
+        sortTestArray.clear();
+        for (int i = 0; i < sortDADTests; i++) {
+            sortTestArray.add(i + rand.nextInt(100));
+        }
+
+
+        // Merge sort test
+        System.out.println("\nNew Test");
+        System.out.println("Testing SortingDAD: merge sort");
+
+        System.out.println("Current array:    " + sortTestArray.toString());
+        sortTestArray = sortDAD.MergeSort(sortTestArray);
+        System.out.println("After merge sort: " + sortTestArray.toString());
+
+        // resetting test
+        sortTestArray.clear();
+        for (int i = 0; i < sortDADTests; i++) {
+            sortTestArray.add(i + rand.nextInt(100));
+        }
+
+
+        // Selection sort test
+        System.out.println("\nNew Test");
+        System.out.println("Testing SortingDAD: selection sort");
+
+        System.out.println("Current array:        " + sortTestArray.toString());
+        sortDAD.SelectionSort(sortTestArray);
+        System.out.println("After selection sort: " + sortTestArray.toString());
+
+        // resetting test
+        sortTestArray.clear();
+        for (int i = 0; i < sortDADTests; i++) {
+            sortTestArray.add(i + rand.nextInt(100));
+        }
+
+
+        // Quick sort test
+        System.out.println("\nNew Test");
+        System.out.println("Testing SortingDAD: quick sort");
+
+        System.out.println("Current array:    " + sortTestArray.toString());
+        sortTestArray = sortDAD.QuickSort(sortTestArray);
+        System.out.println("After quick sort: " + sortTestArray.toString());
     }
 }

@@ -2,7 +2,7 @@ package CS113.ArrayList;
 
 import CS113.ListInterface;
 
-public class ArrayListDAD<E> implements ListInterface<E> {
+public class ArrayListDAD<E extends Comparable<E>> implements ListInterface<E> {
 
     private E[] array;
 
@@ -10,24 +10,23 @@ public class ArrayListDAD<E> implements ListInterface<E> {
 
     @SuppressWarnings("unchecked")
     public ArrayListDAD() {
-        array = (E[]) new Object[DEFAULT_SIZE];
+        array = (E[]) new Comparable[DEFAULT_SIZE];
     }
 
     @Override
     public boolean add(E element) {
-        if (array[array.length - 1] != null) {
-            int length = array.length;
+        if (size() == array.length) {
             resize();
-            array[length] = element;
         }
-
+    
         for (int i = 0; i < array.length; i++) {
             if (array[i] == null) {
                 array[i] = element;
                 return true;
             }
         }
-        return true;
+    
+        return false;
     }
 
     @Override
@@ -140,6 +139,22 @@ public class ArrayListDAD<E> implements ListInterface<E> {
 
         stringBuilder.append("]");
         return stringBuilder.toString();
+    }
+
+    public E min() {
+        if (isEmpty()) {
+            return null;
+        }
+    
+        E minValue = array[0];
+    
+        for (int i = 1; i < size(); i++) {
+            if (array[i].compareTo(minValue) < 0) {
+                minValue = array[i];
+            }
+        }
+    
+        return minValue;
     }
 
     private void resize() {
