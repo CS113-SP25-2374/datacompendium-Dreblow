@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import CS113.ArrayList.ArrayListDAD;
+import CS113.Graphs.GraphInterfaceDAD;
 import CS113.HashMap.HashMapDAD;
 import CS113.LinkedList.LinkedListDAD;
 import CS113.PriorityQueue.PriorityQueueDAD;
@@ -355,5 +356,28 @@ public class Main {
         System.out.println("Current array:    " + sortTestArray.toString());
         sortTestArray = sortDAD.QuickSort(sortTestArray);
         System.out.println("After quick sort: " + sortTestArray.toString());
+
+
+
+        // ===========================
+        // Testing GraphInterfaceDAD
+        // ===========================
+        System.out.println("\nNew Test");
+        System.out.println("Testing GraphInterfaceDAD");
+        GraphInterfaceDAD giDAD = new GraphInterfaceDAD();
+
+        // Add nodes
+        giDAD.addNode("A");
+        giDAD.addNode("B");
+        giDAD.addNode("C");
+
+        // Add directed edges
+        giDAD.addEdge("A", "B", true);
+        giDAD.addEdge("A", "C", true);
+        giDAD.addEdge("B", "C", true);
+
+        // Print adjacency matrix
+        System.out.println("Adjacency Matrix:");
+        giDAD.printGraph();
     }
 }
