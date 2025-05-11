@@ -379,5 +379,51 @@ public class Main {
         // Print adjacency matrix
         System.out.println("Adjacency Matrix:");
         giDAD.printGraph();
+
+
+
+        // ===========================
+        // Data Compendium Celebration!!
+        // ===========================
+        System.out.println("\n🎉 Data Compendium Celebration 🎉\n");
+        System.out.println("Testing HashMapDAD implementation via...\n");
+
+        HashMapDAD<String, Integer> mapDADCelebrate = new HashMapDAD<>();
+        final String testString = "hello world - hello java - hello hash";
+
+        System.out.println("=== Word Frequency Counter ===");
+        System.out.println("Testing phrase: " + testString);
+
+        String[] words = testString.split("\\W+");
+        for (String word : words) {
+            if (word.isEmpty()) continue;
+
+            if (mapDADCelebrate.containsKey(word)) {
+                int currentCount = mapDADCelebrate.get(word);
+                mapDADCelebrate.put(word, ++currentCount);
+            } else {
+                mapDADCelebrate.put(word, 1);
+            }
+        }
+
+        System.out.println("");
+
+        // Display frequencies
+        for (String word : mapDADCelebrate.keySet()) {
+            System.out.println(word + ": " + mapDADCelebrate.get(word));
+        }
+
+        System.out.println("");
+        System.out.println("Contains hello? " + mapDADCelebrate.containsKey("hello"));
+
+        System.out.println("Removing a single instance of hello");
+        int currentAmount = mapDADCelebrate.get("hello");
+        System.out.println("Current # of hello: " + currentAmount);
+        mapDADCelebrate.put("hello", --currentAmount);
+        System.out.println("new # of hello: " + mapDADCelebrate.get("hello"));
+        System.out.println("Removing all of hello");
+        mapDADCelebrate.remove("hello");
+        System.out.println("new # of hello: " + mapDADCelebrate.get("hello"));
     }
+
 }

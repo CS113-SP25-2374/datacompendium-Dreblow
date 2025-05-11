@@ -61,12 +61,6 @@ public class HashMapDAD<K, V> implements MapInterface<K, V> {
         }
 
         capacityFactor = (int)(buckets.length * 0.75);
-
-        String[] names = {"Noah", "Derek", "Kyle", "Rafail", "Frankie", "KC", "Katanu"};
-        for (String name : names) {
-            long hashCode = Integer.toUnsignedLong(name.hashCode());
-            System.out.println(name + " " + hashCode+ " modulated hash " + hashCode % buckets.length);
-        }
     }
 
     private int getHash(K key) {
@@ -91,7 +85,7 @@ public class HashMapDAD<K, V> implements MapInterface<K, V> {
         IteratorInterface<Entry<K, V>> iterator = bucket.iterator();
         while (iterator.hasNext()) {
             Entry<K, V> entry = iterator.next();
-            if (entry.key == key) {
+            if (entry.key.equals(key)) {
                 // found it!
                 return true;
             }
@@ -123,7 +117,7 @@ public class HashMapDAD<K, V> implements MapInterface<K, V> {
 
         while (iterator.hasNext()) {
             Entry<K, V> entry = iterator.next();
-            if (entry.key == key) {
+            if (entry.key.equals(key)) {
                 // found it!
                 return entry.getValue();
             }
@@ -140,7 +134,7 @@ public class HashMapDAD<K, V> implements MapInterface<K, V> {
 
         while (iterator.hasNext()) {
             Entry<K, V> entry = iterator.next();
-            if (entry.key == key) {
+            if (entry.key.equals(key)) {
                 // found it!
                 entry.setValue(value);
                 return value;
@@ -162,9 +156,22 @@ public class HashMapDAD<K, V> implements MapInterface<K, V> {
 
     @Override
     public V remove(K key) {
+        int index = getHash(key);
+        LinkedListDAD<Entry<K, V>> bucket = buckets[index];
 
-        count --;
-        return null;
+        IteratorInterface<Entry<K, V>> iterator = bucket.iterator();
+
+        while (iterator.hasNext()) {
+            Entry<K, V> entry = iterator.next();
+            if (entry.key.equals(key)) {
+                V value = entry.getValue();
+                iterator.remove();
+                count--;
+                return value;
+            }
+        }
+
+        return null; // key not found
     }
 
     @Override
