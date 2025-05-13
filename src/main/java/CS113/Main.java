@@ -413,17 +413,29 @@ public class Main {
             System.out.println(word + ": " + mapDADCelebrate.get(word));
         }
 
+        // Find hello
         System.out.println("");
         System.out.println("Contains hello? " + mapDADCelebrate.containsKey("hello"));
+        System.out.println("");
 
+        // Removing a single instance of hello
         System.out.println("Removing a single instance of hello");
         int currentAmount = mapDADCelebrate.get("hello");
         System.out.println("Current # of hello: " + currentAmount);
         mapDADCelebrate.put("hello", --currentAmount);
         System.out.println("new # of hello: " + mapDADCelebrate.get("hello"));
+        System.out.println("");
+
+        // Remove all hellos
         System.out.println("Removing all of hello");
         mapDADCelebrate.remove("hello");
         System.out.println("new # of hello: " + mapDADCelebrate.get("hello"));
+
+        // Requirements:
+        // 1) Insert    (put)
+        // 2) Remove    (remove)
+        // 3) Find      (containsKey)
+        // 4) Iteration (containsKey)
     }
 
 }
